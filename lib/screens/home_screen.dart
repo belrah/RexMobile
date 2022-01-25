@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+
+  String psn;
+
+  HomeScreen( {Key? key, required this.psn} ) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Center(
           child: Text(
-            'Home Screen',
+            'PSN: $psn ',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: size.width * 0.1),
           ),

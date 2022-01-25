@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:rexmobile/screens/login_screen.dart';
+import 'package:fluttertoast/flutterToast.dart';
+import 'package:http/http.dart' as http;
+import 'package:rexmobile/screens/home_screen.dart';
+
 
 class RegisterStaff extends StatefulWidget {
   const RegisterStaff({Key? key}) : super(key: key);
@@ -15,23 +21,59 @@ class _RegisterStaff extends State<RegisterStaff> {
 
   // ignore: override_on_non_overriding_member
   final _formkey = GlobalKey<FormState>();
+  bool processing = false;
+  late final TextEditingController psnCtrl;
 
 //editing controller
-  final TextEditingController passwordController = new TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    psnCtrl = TextEditingController();
+
+  }
+  void searchPSN() async {
+    const String apiEndpoint =
+        "http://stevenbiv-005-site1.htempurl.com/rexmobile/rexmobilesearchpsn.php";
+    var data = {
+      "staffId": psnCtrl.text,
+
+    };
+    final Uri url = Uri.parse(apiEndpoint);
+    final res = await http.post(url, body: data);
+
+    if (jsonDecode(res.body) == "psn doesnt exists") {
+      Fluttertoast.showToast(
+          msg: "PSN Does Not Exist. Check with the Salary Center",
+          toastLength: Toast.LENGTH_SHORT);
+    } else {
+      if (jsonDecode(res.body) == "account registered already") {
+        Fluttertoast.showToast(
+            msg: "Your Account Has Been Registered Already", toastLength: Toast.LENGTH_SHORT);
+      } else {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => HomeScreen(psn: res.body)));
+      }
+    }
+
+    setState(() {
+      processing = false;
+    });
+  }
+  @override
   Widget build(BuildContext context) {
     //psn field
     // ignore: unused_local_variable
     final passwordField = TextFormField(
       // obscureText: true,
-      controller: passwordController,
+      controller: psnCtrl,
       autofocus: false,
       onSaved: (value) {
-        passwordController.text = value!;
+        psnCtrl.text = value!;
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.vpn_key),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.vpn_key),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "PSN",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -42,12 +84,12 @@ class _RegisterStaff extends State<RegisterStaff> {
     final registerButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(8),
-      color: Color(0xff004A8E),
+      color: const Color(0xff004A8E),
       child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
-          onPressed: () {},
-          child: Text(
+          onPressed: () => searchPSN(),
+          child: const Text(
             "Register Staff",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -75,23 +117,23 @@ class _RegisterStaff extends State<RegisterStaff> {
                           "assets/images/mf_logo.png",
                           fit: BoxFit.contain,
                         )),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     passwordField,
-                    SizedBox(height: 35),
+                    const SizedBox(height: 35),
                     registerButton,
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("I have an account online? "),
+                          const Text("I have an account online? "),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                                      builder: (context) => const LoginScreen()));
                             },
-                            child: Text(
+                            child: const Text(
                               "Login User",
                               style: TextStyle(
                                   color: Color(0xff004A8E),
