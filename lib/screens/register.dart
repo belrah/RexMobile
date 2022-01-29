@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, annotate_overrides
+
 import 'package:flutter/material.dart';
 import 'package:rexmobile/screens/register_staff.dart';
 
@@ -17,7 +19,7 @@ class _RegisterScreen extends State<RegisterScreen> {
   final _formkey = GlobalKey<FormState>();
 
 //editing controller
-  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   Widget build(BuildContext context) {
     //psn field
     // ignore: unused_local_variable
