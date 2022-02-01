@@ -1,9 +1,12 @@
-
+// ignore_for_file: duplicate_import, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:rexmobile/screens/home_screen.dart';
-// import 'package:rexmobile/screens/splash_screen.dart';
-// import 'package:rexmobile/screens/otp.dart';
+
+
+
+import 'package:rexmobile/screens/otp.dart';
+import 'package:rexmobile/screens/otp1.dart';
+// import 'package:rexmobile/screens/otp1.dart';
 
 
 void main() {
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(psn: '',),
+      home: const OtpVerification1(),
     );
   }
 }
