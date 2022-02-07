@@ -192,7 +192,7 @@ class OtpVerification extends StatelessWidget {
                                     ),
                                     SizedBox(width: 10),
                                     Text(
-                                      "dayo******@gmail.com",
+                                      "mmm******@gmail.com",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Color(0xff5f5a5a),
