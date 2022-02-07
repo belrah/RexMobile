@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 
 import 'package:rexmobile/screens/otp.dart';
-import 'package:rexmobile/screens/otp1.dart';
-// import 'package:rexmobile/screens/otp1.dart';
+import 'package:rexmobile/screens/otp.dart';
+
 
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const OtpVerification1(),
+      home: const OtpVerification(),
     );
   }
 }
