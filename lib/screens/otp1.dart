@@ -6,8 +6,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class OtpVerification extends StatelessWidget {
-  const OtpVerification({Key? key}) : super(key: key);
+class OtpVerification1 extends StatelessWidget {
+  const OtpVerification1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +197,7 @@ class OtpVerification extends StatelessWidget {
                                       style: TextStyle(
                                         color: Color(0xff5f5a5a),
                                         fontSize: 17,
-                                          fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
